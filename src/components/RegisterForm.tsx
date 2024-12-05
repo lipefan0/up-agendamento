@@ -1,5 +1,5 @@
 import React from "react";
-import { login } from "../auth/auth";
+import { register } from "../auth/auth";
 
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
@@ -7,16 +7,22 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   const email = (form.elements.namedItem("email") as HTMLInputElement).value;
   const password = (form.elements.namedItem("password") as HTMLInputElement)
     .value;
+  const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+  const businessType = (
+    form.elements.namedItem("businessType") as HTMLInputElement
+  ).value;
+  const address = (form.elements.namedItem("address") as HTMLInputElement)
+    .value;
 
   try {
-    await login({ email, password });
-    window.location.href = "/dashboard"; // Redireciona para a rota protegida
+    await register({ name, email, password, businessType, address });
+    window.location.href = "/login"; // Redireciona para a rota protegida
   } catch (error) {
     console.error("Erro ao fazer login:", error);
   }
 };
 
-function RgisterHandler() {
+function RegisterHandler() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-[320px]">
       <div className="flex flex-col gap-1">
@@ -31,34 +37,34 @@ function RgisterHandler() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="email">Nome da empresa</label>
+        <label htmlFor="name">Nome da empresa</label>
         <input
           className="p-2 border-spacing-1 rounded-sm text-dark border"
-          id="email"
-          name="email"
+          id="name"
+          name="name"
           type="text"
           placeholder=""
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="businessType">Tipo da empresa</label>
         <input
           className="p-2 border-spacing-1 rounded-sm text-dark border"
-          id="email"
-          name="email"
-          type="email"
+          id="businessType"
+          name="businessType"
+          type="text"
           placeholder=""
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="address">Endereço</label>
         <input
           className="p-2 border-spacing-1 rounded-sm text-dark border"
-          id="email"
-          name="email"
-          type="email"
+          id="address"
+          name="address"
+          type="text"
           placeholder=""
         />
       </div>
@@ -73,10 +79,10 @@ function RgisterHandler() {
         />
       </div>
       <button className="transition-all hover:scale-95 duration-300 ease-in-out delay-100 px-4 py-2 rounded-sm bg-primary dark:bg-primaryDark hover:bg-secondary text-light">
-        Login
+        Registrar
       </button>
     </form>
   );
 }
 
-export default RgisterHandler;
+export default RegisterHandler;

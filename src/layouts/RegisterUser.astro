@@ -1,0 +1,40 @@
+---
+import { CalendarCheck } from "lucide-react";
+import RegisterHandler from "../components/RegisterForm";
+---
+
+<main>
+  <a
+    href="/auth/login"
+    class="hidden lg:block lg:absolute top-6 right-6 bg-primary dark:bg-primaryDark text-light font-semibold rounded-sm px-4 py-2"
+    >Logar</a
+  >
+  <div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+    <div
+      class="flex justify-center lg:justify-normal bg-gradient-to-br from-primary to-primaryDark bg-contain dark:from-light dark:to-primaryDark text-light dark:text-dark"
+    >
+      <div class="lg:absolute lg:top-6 lg:left-6 flex items-center gap-4">
+        <CalendarCheck className="w-12 h-12" />
+        <h1 class="lg:text-3xl text-xl font-bold tracking-tight">
+          Up Agendamento
+        </h1>
+      </div>
+    </div>
+    <div
+      class="flex flex-col gap-4 items-center justify-center bg-light p-6 dark:bg-dark text-dark dark:text-light"
+    >
+      <div class="w-[320px]">
+        <h1 class="mb-4 text-primary dark:text-primaryDark font-bold text-2xl">
+          Faça seu cadastro
+        </h1>
+        <RegisterHandler client:load />
+        <p class="mt-4 text-sm text-center">
+          Ao clicar em cadastrar, estou de acordo com os, <a
+            class="text-primary dark:text-primaryDark hover:underline underline-offset-4"
+            href="/auth/register">termos de privacidade de segurança</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</main>

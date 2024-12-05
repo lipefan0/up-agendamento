@@ -1,0 +1,15 @@
+---
+import LayoutAuth from "../../layouts/LayoutAuth.astro";
+import RegisterUser from "../../layouts/RegisterUser.astro";
+---
+
+<LayoutAuth pageTitle="Registrar">
+  <RegisterUser />
+</LayoutAuth>
+
+<script>
+  import { isAuthenticated } from "../../auth/auth";
+  if (isAuthenticated()) {
+    location.href = "/dashboard";
+  }
+</script>

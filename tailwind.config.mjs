@@ -11,6 +11,9 @@ export default {
 				dark: '#121212',
 				error: '#B00020',
 				errorDark: '#CF6679',
+			},
+			backgroundImage: {
+				loginPage: "url('/src/assets/agenda.png')",
 			}
 		},
 	},

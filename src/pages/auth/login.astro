@@ -6,3 +6,10 @@ import LayoutAuth from "../../layouts/LayoutAuth.astro";
 <LayoutAuth pageTitle="Login">
   <Auth />
 </LayoutAuth>
+
+<script>
+  import { isAuthenticated } from "../../auth/auth";
+  if (isAuthenticated()) {
+    location.href = "/dashboard";
+  }
+</script>

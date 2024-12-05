@@ -1,0 +1,28 @@
+---
+import Dashboard from "../../layouts/Dashboard.astro";
+---
+
+<Dashboard pageTitle="Dashboard">
+  <main>
+    <h1 id="welcomeMessage"></h1>
+    <button onclick="logout()">Logout</button>
+  </main>
+</Dashboard>
+
+<script>
+  import { isAuthenticated } from "../../auth/auth";
+
+  window.addEventListener("load", () => {
+    if (!isAuthenticated()) {
+      window.location.href = "/auth/login"; // Redireciona para a página de login
+    }
+  });
+
+  const user = JSON.parse(sessionStorage.getItem("user") || "{}");
+  document.addEventListener("DOMContentLoaded", () => {
+    const welcomeMessage = document.getElementById("welcomeMessage");
+    if (user && welcomeMessage) {
+      welcomeMessage.textContent = `Bem-vindo, ${user.business.name}`;
+    }
+  });
+</script>

@@ -67,15 +67,23 @@ export const register = async ({
 }: RegisterParams) => {
   // Simula uma chamada à API de registro
   const response = await fetch(
-    "https://dp7yszchnf.execute-api.us-east-2.amazonaws.com/dev/singup",
+    "https://dp7yszchnf.execute-api.us-east-2.amazonaws.com/dev/signup",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, name, businessType, address }),
+      body: JSON.stringify({
+        email,
+        password,
+        businessName: name,
+        businessType,
+        businessAddress: address,
+      }),
     }
   );
 
   if (!response.ok) {
+    const errorData = await response.json();
+    console.error("Erro ao registrar:", errorData);
     throw new Error("Registro falhou");
   }
 

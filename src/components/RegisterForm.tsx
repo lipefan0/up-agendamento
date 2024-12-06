@@ -16,7 +16,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
   try {
     await register({ name, email, password, businessType, address });
-    window.location.href = "/login"; // Redireciona para a rota protegida
+    window.location.href = "/"; // Redireciona para a rota protegida
   } catch (error) {
     console.error("Erro ao fazer login:", error);
   }
